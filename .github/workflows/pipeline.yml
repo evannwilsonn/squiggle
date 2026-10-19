@@ -141,7 +141,7 @@ jobs:
           docker push "$AR_IMAGE:$SHA"
 
       - name: Publish to Cloud Run
-        # Scales to zero when nobody is using it; capped so a traffic spike can't run up a bill.
+        # Keeps one instance always warm so the app never sleeps; capped so a traffic spike can't run up a bill.
           # One instance only: rooms live in memory, so every player has to reach the same server.
         env: {}
         run: |
@@ -149,7 +149,7 @@ jobs:
           extra=""
           gcloud run deploy squiggle --image "$AR_IMAGE:$SHA" --region "$REGION" \
             --port 7860 --memory 1Gi --cpu 1 --cpu-boost \
-            --min-instances 0 --max-instances 1 --timeout 3600 \
+            --min-instances 1 --max-instances 1 --timeout 3600 \
             --allow-unauthenticated --quiet $extra
           url=$(gcloud run services describe squiggle --region "$REGION" --format 'value(status.url)')
           echo "Live at $url"

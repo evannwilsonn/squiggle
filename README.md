@@ -66,7 +66,7 @@ push to main ─► check: format, compile --warnings-as-errors, mix test
 ```
 
 - **Container:** a Phoenix release on Debian slim, uid 1000, port 7860, with the trained weights (`priv/model/net.nx`, 3.5 MB) inside. Rooms live in memory, so one instance holds every game.
-- **Cloud Run:** the pipeline's last job copies this commit's tested image from GHCR to Google's registry and deploys it to Cloud Run in us-east1, with 1 GB of memory and exactly one instance, so every room lives on the same server. It scales to zero when nobody's using it. It logs in to Google through workload identity, so no key is stored anywhere; the one-time setup is `cloudrun-setup.sh` in [Conveyor](https://github.com/evannwilsonn/conveyor), and the job runs once the repo has the variables it prints. Hugging Face Spaces was the first plan, but Docker Spaces now need a paid account.
+- **Cloud Run:** the pipeline's last job copies this commit's tested image from GHCR to Google's registry and deploys it to Cloud Run in us-east1, with 1 GB of memory and exactly one instance, so every room lives on the same server. One instance stays warm at all times, so the app never cold-starts. It logs in to Google through workload identity, so no key is stored anywhere; the one-time setup is `cloudrun-setup.sh` in [Conveyor](https://github.com/evannwilsonn/conveyor), and the job runs once the repo has the variables it prints. Hugging Face Spaces was the first plan, but Docker Spaces now need a paid account.
 - **Pipeline board:** the run shows up on [Conveyor](https://evannwilsonn.github.io/conveyor/).
 
 ## Reproducing the numbers
