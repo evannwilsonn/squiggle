@@ -1,5 +1,5 @@
 defmodule SquiggleWeb.Marks do
-  @moduledoc "The masthead: a registration mark, the hand-lettered name and the light/dark switch."
+  @moduledoc "The masthead: a registration mark, the overprinted name and the light/dark switch."
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
@@ -14,7 +14,9 @@ defmodule SquiggleWeb.Marks do
           <circle cx="20" cy="20" r="11" />
           <path d="M20 2v36M2 20h36" />
         </svg>
-        <span class="wordmark">Squiggle</span>
+        <span class="wordmark print">
+          <span class="ink">SQUIGGLE</span><span class="over" aria-hidden="true">SQUIGGLE</span>
+        </span>
       </a>
       <span :if={@code} class="sheet-no">sheet <b>{@code}</b></span>
       <button

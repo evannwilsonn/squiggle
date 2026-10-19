@@ -207,7 +207,7 @@ defmodule SquiggleWeb.RoomLive do
                 >
                   <span
                     class="avg"
-                    style={"--img: url(/images/average/#{@room.word}.png)"}
+                    style={"--img: url(/images/halftone/#{@room.word}.svg)"}
                     aria-hidden="true"
                   ></span>
                   <small>the average {@room.word}</small>

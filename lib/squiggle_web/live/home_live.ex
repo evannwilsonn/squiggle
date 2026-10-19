@@ -46,7 +46,15 @@ defmodule SquiggleWeb.HomeLive do
         <section class="hero">
           <div class="hero-copy">
             <p class="eyebrow">A drawing game · 1 to 8 people · 1 neural network</p>
-            <h1 class="hand">Draw something.<br /><span>The machine is watching.</span></h1>
+            <h1 class="print">
+              <span class="ink">
+                Draw something.<span class="tag-line">The machine is watching.</span>
+              </span>
+              <span class="over" aria-hidden="true">
+                Draw something.<span class="tag-line">The machine is watching.</span>
+              </span>
+            </h1>
+            <span class="wave" aria-hidden="true"></span>
             <p class="lede">
               Whoever's turn it is draws a word. Everyone else races to guess it, and so does a
               network trained on Google's Quick, Draw! doodles, calling out its guesses in the
@@ -186,7 +194,7 @@ defmodule SquiggleWeb.HomeLive do
     """
   end
 
-  defp avg(category), do: "/images/average/#{category}.png"
+  defp avg(category), do: "/images/halftone/#{category}.svg"
 
   defp pct(nil), do: "–"
   defp pct(x), do: "#{round(x * 100)}%"
