@@ -315,7 +315,8 @@ label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-sp
 .scores li:last-child { border-bottom: 0 }
 .scores li > .mono { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1; color: var(--blue) }
 .scores .who { display: flex; align-items: center; gap: 8px; flex-wrap: wrap }
-.scores li.me .who { color: var(--blue); text-decoration: underline; text-decoration-style: wavy; text-decoration-color: var(--pink); text-underline-offset: 5px }
+.scores li.me .who { color: var(--blue) }
+.scores li.me .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--pink); mix-blend-mode: var(--blend) }
 .scores li.bot .who, .scores li.bot > .mono { color: var(--pink-text) }
 .tag { display: inline-block; font-style: normal; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 1px 7px; border: 1px solid var(--rule); color: var(--lead) }
 .tag.got { color: var(--pink-text); border-color: var(--pink) }
