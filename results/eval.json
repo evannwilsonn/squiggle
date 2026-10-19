@@ -1,0 +1,122 @@
+{
+  "categories": [
+    "airplane",
+    "apple",
+    "banana",
+    "bicycle",
+    "car",
+    "cat",
+    "clock",
+    "cloud",
+    "envelope",
+    "eye",
+    "fish",
+    "flower",
+    "guitar",
+    "house",
+    "key",
+    "ladder",
+    "moon",
+    "pizza",
+    "rainbow",
+    "snowman",
+    "star",
+    "sun",
+    "tree",
+    "umbrella"
+  ],
+  "nearest_mean": 0.5797500014305115,
+  "per_class": {
+    "airplane": 0.879,
+    "apple": 0.948,
+    "banana": 0.836,
+    "bicycle": 0.964,
+    "car": 0.927,
+    "cat": 0.853,
+    "clock": 0.943,
+    "cloud": 0.898,
+    "envelope": 0.96,
+    "eye": 0.937,
+    "fish": 0.889,
+    "flower": 0.916,
+    "guitar": 0.921,
+    "house": 0.98,
+    "key": 0.854,
+    "ladder": 0.967,
+    "moon": 0.805,
+    "pizza": 0.91,
+    "rainbow": 0.983,
+    "snowman": 0.937,
+    "star": 0.89,
+    "sun": 0.952,
+    "tree": 0.94,
+    "umbrella": 0.934
+  },
+  "confusions": [
+    {
+      "count": 124,
+      "called": "moon",
+      "drawn": "banana"
+    },
+    {
+      "count": 53,
+      "called": "banana",
+      "drawn": "moon"
+    },
+    {
+      "count": 47,
+      "called": "pizza",
+      "drawn": "moon"
+    },
+    {
+      "count": 43,
+      "called": "airplane",
+      "drawn": "star"
+    },
+    {
+      "count": 39,
+      "called": "guitar",
+      "drawn": "key"
+    },
+    {
+      "count": 30,
+      "called": "clock",
+      "drawn": "moon"
+    },
+    {
+      "count": 29,
+      "called": "tree",
+      "drawn": "flower"
+    },
+    {
+      "count": 24,
+      "called": "key",
+      "drawn": "guitar"
+    }
+  ],
+  "sketches": {
+    "valid": 24000,
+    "test": 24000,
+    "train": 120000
+  },
+  "chance": 0.041666666666666664,
+  "network": {
+    "curve": [
+      {
+        "valid": 0.8929583430290222,
+        "epoch": 1
+      },
+      {
+        "valid": 0.9120833277702332,
+        "epoch": 2
+      },
+      {
+        "valid": 0.9190416932106018,
+        "epoch": 3
+      }
+    ],
+    "epoch": 3,
+    "top1": 0.9176250100135803,
+    "top3": 0.9660000205039978
+  }
+}
