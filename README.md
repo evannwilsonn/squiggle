@@ -4,7 +4,7 @@ A live drawing game where people race a neural network. One player draws a word;
 
 [![pipeline](https://github.com/evannwilsonn/squiggle/actions/workflows/pipeline.yml/badge.svg)](https://github.com/evannwilsonn/squiggle/actions/workflows/pipeline.yml)
 
-**Live demo:** a Hugging Face Space, deployed from `main` by the pipeline (see [Deployment](#7-deployment)).
+**Live demo:** on Google Cloud Run, deployed from `main` by the pipeline (see [Deployment](#7-deployment)).
 
 Project 13c of my AI project roadmap, the capstone, built three times in a language I hadn't used before. The other two are [Lure](https://github.com/evannwilsonn/lure) and [Recall](https://github.com/evannwilsonn/recall).
 
@@ -62,11 +62,11 @@ In the game, a guess comes back in well under a second: the browser sends a new 
 ```
 push to main ─► check: format, compile --warnings-as-errors, mix test
               └► image: docker build ─► smoke test on :7860 (page + framing header) ─► ghcr.io/evannwilsonn/squiggle
-                                                                                         └► Hugging Face Space
+                                                                                         └► Google Cloud Run
 ```
 
 - **Container:** a Phoenix release on Debian slim, uid 1000, port 7860, with the trained weights (`priv/model/net.nx`, 3.5 MB) inside. Rooms live in memory, so one instance holds every game.
-- **Space:** the pipeline's last job pushes a one-line Dockerfile (`FROM ghcr.io/evannwilsonn/squiggle:<commit>`) and the Space card. It runs once the repo has a variable `HF_SPACE` (like `name/squiggle`) and a secret `HF_TOKEN`, and needs the GHCR package to be public.
+- **Cloud Run:** the pipeline's last job copies this commit's tested image from GHCR to Google's registry and deploys it to Cloud Run in us-east1, with 1 GB of memory and exactly one instance, so every room lives on the same server. It scales to zero when nobody's using it. It logs in to Google through workload identity, so no key is stored anywhere; the one-time setup is `cloudrun-setup.sh` in [Conveyor](https://github.com/evannwilsonn/conveyor), and the job runs once the repo has the variables it prints. Hugging Face Spaces was the first plan, but Docker Spaces now need a paid account.
 - **Pipeline board:** the run shows up on [Conveyor](https://evannwilsonn.github.io/conveyor/).
 
 ## Reproducing the numbers
