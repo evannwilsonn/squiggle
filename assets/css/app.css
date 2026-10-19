@@ -115,21 +115,83 @@ label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spa
 .row input { flex: 1 }
 
 /* home */
-.lede { max-width: 660px; margin-bottom: 36px }
-.lede p { margin: 0 0 12px }
-.doors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-bottom: 48px }
-.door { background: var(--sheet); border: 1.5px solid var(--edge); border-radius: 18px; padding: 24px; box-shadow: var(--lift); position: relative }
-.door h2 { font-family: var(--hand); font-size: 1.5rem; margin-bottom: 4px }
-.door > p { margin: 0 0 16px; color: var(--lead) }
-.door::before { content: ""; position: absolute; top: -9px; left: 26px; width: 64px; height: 18px; background: var(--blue-wash); border: 1px solid var(--grid); transform: rotate(-3deg) }
-.code-in { font-family: var(--mono); letter-spacing: 0.4em; text-transform: uppercase; font-size: 1.2rem }
-.knows h2 { font-family: var(--hand); font-size: 1.6rem }
-.words { list-style: none; padding: 0; margin: 16px 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px }
-.words li { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 12px; border: 1px dashed var(--nonphoto); border-radius: 10px; background: var(--sheet) }
-.words li span { font-family: var(--hand); font-size: 1.15rem }
-.words small { font-family: var(--mono); color: var(--blue) }
-.mix { display: inline-block; margin: 2px 10px 2px 0; padding: 0 8px; border-radius: 6px; background: var(--blue-wash); color: var(--graphite) }
-.foot { margin-top: 48px; padding-top: 16px; border-top: 1.5px dashed var(--nonphoto); color: var(--lead); font-size: 0.88rem }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin: 0 0 14px }
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 48px; align-items: start; margin-bottom: 56px }
+.hero h1 { font-size: clamp(2.3rem, 5.4vw, 4rem); line-height: 1.02; margin: 0 0 18px; letter-spacing: -0.01em }
+.hero h1 span { color: var(--blue); display: inline-block; transform: rotate(-1.2deg) }
+.lede { max-width: 560px; margin: 0 0 28px; color: var(--lead); font-size: 1.05rem }
+.doors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px }
+.door { background: var(--sheet); border: 1.5px solid var(--edge); border-radius: 14px; padding: 22px 20px 20px; box-shadow: var(--lift); position: relative; transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1) }
+.door:nth-child(1) { transform: rotate(-0.8deg) }
+.door:nth-child(2) { transform: rotate(0.6deg) }
+.door:hover { transform: rotate(0) translateY(-2px) }
+.door h2 { font-size: 1.45rem; margin-bottom: 2px }
+.door > p { margin: 0 0 14px; color: var(--lead); font-size: 0.95rem }
+.tape { position: absolute; top: -10px; left: 50%; width: 72px; height: 20px; margin-left: -36px; background: var(--blue-wash); border: 1px solid var(--grid); transform: rotate(-4deg); backdrop-filter: blur(1px) }
+.code-in { font-family: var(--mono); letter-spacing: 0.4em; text-transform: uppercase; font-size: 1.15rem; width: 100% }
+
+/* the sheet that draws itself */
+.demo { margin: 0 }
+.demo-sheet {
+  position: relative; aspect-ratio: 1; border-radius: 6px; background-color: var(--sheet);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 5% 5%; background-position: -1px -1px; border: 1.5px solid var(--edge); box-shadow: var(--lift);
+  transform: rotate(1.4deg);
+}
+.demo-sheet > svg:first-of-type { position: absolute; inset: 6% 18% 10% 2%; width: 80%; height: 84% }
+.demo-sheet path { fill: none; stroke: var(--graphite); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1 }
+.d-body { animation: d-body 10s infinite }
+.d-roof { animation: d-roof 10s infinite }
+.d-door { animation: d-door 10s infinite }
+.d-window { animation: d-window 10s infinite }
+@keyframes d-body { 0% { stroke-dashoffset: 1; opacity: 1 } 14%, 88% { stroke-dashoffset: 0; opacity: 1 } 96%, 100% { stroke-dashoffset: 0; opacity: 0 } }
+@keyframes d-roof { 0%, 16% { stroke-dashoffset: 1; opacity: 1 } 28%, 88% { stroke-dashoffset: 0; opacity: 1 } 96%, 100% { stroke-dashoffset: 0; opacity: 0 } }
+@keyframes d-door { 0%, 34% { stroke-dashoffset: 1; opacity: 1 } 42%, 88% { stroke-dashoffset: 0; opacity: 1 } 96%, 100% { stroke-dashoffset: 0; opacity: 0 } }
+@keyframes d-window { 0%, 43% { stroke-dashoffset: 1; opacity: 1 } 50%, 88% { stroke-dashoffset: 0; opacity: 1 } 96%, 100% { stroke-dashoffset: 0; opacity: 0 } }
+.note { position: absolute; right: 5%; font-family: var(--hand); font-weight: 700; color: var(--blue); font-size: clamp(1rem, 2vw, 1.35rem); white-space: nowrap; opacity: 0; transform: rotate(-3deg) }
+.note i { font-style: normal; font-family: var(--mono); font-size: 0.7em; font-weight: 400; margin-left: 4px }
+.n1 { top: 20%; animation: n1 10s infinite }
+.n2 { top: 32%; animation: n2 10s infinite }
+.n3 { top: 48%; color: var(--red); animation: n3 10s infinite; font-size: clamp(1.15rem, 2.4vw, 1.6rem) }
+@keyframes n1 { 0%, 15% { opacity: 0; text-decoration: none } 18% { opacity: 1 } 29% { opacity: 1; text-decoration: none } 31%, 88% { opacity: 0.45; text-decoration: line-through } 96%, 100% { opacity: 0 } }
+@keyframes n2 { 0%, 29% { opacity: 0 } 32% { opacity: 1; text-decoration: none } 49% { opacity: 1; text-decoration: none } 51%, 88% { opacity: 0.45; text-decoration: line-through } 96%, 100% { opacity: 0 } }
+@keyframes n3 { 0%, 51% { opacity: 0; transform: rotate(-3deg) scale(0.8) } 55%, 88% { opacity: 1; transform: rotate(-3deg) scale(1) } 96%, 100% { opacity: 0 } }
+.demo-sheet .loop { position: absolute; right: 1%; top: 42%; width: 42%; height: auto; overflow: visible }
+.demo-sheet .loop path { stroke: var(--red); stroke-width: 1.6; animation: loop 10s infinite }
+@keyframes loop { 0%, 53% { stroke-dashoffset: 1; opacity: 1 } 60%, 88% { stroke-dashoffset: 0; opacity: 1 } 96%, 100% { opacity: 0 } }
+.demo figcaption { margin-top: 18px; color: var(--lead); font-size: 0.9rem; max-width: 440px }
+
+/* numbers */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1.5px dashed var(--nonphoto); border-bottom: 1.5px dashed var(--nonphoto); margin-bottom: 56px }
+.stats > div { padding: 20px 18px; display: flex; flex-direction: column; gap: 2px; border-right: 1px dashed var(--grid) }
+.stats > div:last-of-type { border-right: 0 }
+.stats b { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 500; color: var(--graphite) }
+.stats div:first-child b { color: var(--blue) }
+.stats .dim b { color: var(--lead) }
+.stats span { color: var(--lead); font-size: 0.9rem }
+.stats .fine { grid-column: 1 / -1; margin: 0; padding: 0 18px 14px }
+
+/* the 24 averages */
+.knows-head { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 32px; align-items: end; margin-bottom: 22px }
+.knows-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1.05 }
+.knows-head p { margin: 0; color: var(--lead) }
+.tiles { list-style: none; padding: 0; margin: 0 0 36px; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 12px }
+@media (max-width: 1100px) { .tiles { grid-template-columns: repeat(6, minmax(0, 1fr)) } }
+@media (max-width: 760px) { .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)) } }
+.tile { background: var(--sheet); border: 1px solid var(--edge); border-radius: 12px; padding: 12px 12px 10px; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "img img" "name pct" "bar bar"; gap: 4px 6px; transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.2s }
+.tile:hover { transform: translateY(-3px) rotate(-0.6deg); border-color: var(--nonphoto) }
+.avg { grid-area: img; display: block; aspect-ratio: 1; width: 100%; background: var(--graphite); -webkit-mask: var(--img) center / contain no-repeat; mask: var(--img) center / contain no-repeat; opacity: 0.9 }
+.tile .name { grid-area: name; font-size: 1.12rem; line-height: 1.2 }
+.tile small { grid-area: pct; color: var(--blue); align-self: center }
+.acc { grid-area: bar; height: 4px; border-radius: 2px; background: var(--blue-wash); overflow: hidden }
+.acc i { display: block; height: 100%; background: var(--blue) }
+.mixups h3 { font-size: 1.4rem; margin: 0 0 12px }
+.mixups ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px }
+.mixups li { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px dashed var(--nonphoto); border-radius: 12px; background: var(--sheet) }
+.avg.sm { width: 44px; flex: none }
+.arrow { color: var(--red); font-family: var(--hand); font-size: 1.4rem }
+.mixups small { display: block; color: var(--lead) }
+.foot { margin-top: 56px; padding-top: 16px; border-top: 1.5px dashed var(--nonphoto); color: var(--lead); font-size: 0.88rem; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between }
 
 /* name gate */
 .gate { max-width: 460px }
@@ -145,6 +207,9 @@ label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spa
 .brief .sub { max-width: 520px }
 .secret { color: var(--red); white-space: nowrap; border-bottom: 2px solid var(--red-wash) }
 .blanks { font-family: var(--mono); letter-spacing: 0.12em; color: var(--blue); font-size: 0.8em; margin-left: 8px; white-space: nowrap }
+.ghost-hint { display: flex; align-items: center; gap: 8px; color: var(--lead); font-size: 0.8rem; padding: 4px 10px 4px 4px; border: 1px dashed var(--nonphoto); border-radius: 10px; background: var(--sheet) }
+.ghost-hint .avg { width: 40px; opacity: 0.55 }
+.ghost-hint small { max-width: 70px; line-height: 1.2 }
 .clock { margin-left: auto; min-width: 64px; text-align: center; font-size: 1.6rem; padding: 4px 12px; border: 1.5px solid var(--edge); border-radius: 12px; background: var(--sheet) }
 .clock.low { color: var(--red); border-color: var(--red) }
 
@@ -166,7 +231,7 @@ label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spa
 .corner.br { bottom: 10px; right: 10px; border-width: 0 1.5px 1.5px 0 }
 .is-drawer .pad { border-color: var(--blue); box-shadow: 0 0 0 4px var(--blue-wash), var(--lift) }
 .phase-lobby .pad, .phase-reveal .pad { opacity: 0.92 }
-.tools { display: flex; gap: 10px; margin-top: 14px; min-height: 46px }
+.tools { display: flex; gap: 10px; margin-top: 14px }
 
 .side { display: grid; gap: 18px }
 .side section { background: var(--sheet); border: 1.5px solid var(--edge); border-radius: 16px; padding: 16px 18px; box-shadow: var(--lift) }
@@ -204,6 +269,11 @@ label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spa
 .guess.ok input { border-bottom-color: var(--red) }
 .guess .ink-btn { padding: 8px 16px }
 
+@media (max-width: 980px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px }
+  .demo { max-width: 520px }
+  .knows-head { grid-template-columns: minmax(0, 1fr); gap: 8px }
+}
 @media (max-width: 900px) {
   .room { grid-template-columns: minmax(0, 1fr) }
   .pad { max-width: none }
@@ -212,6 +282,10 @@ label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spa
 @media (max-width: 640px) {
   .sheet { padding: 14px 16px 40px }
   .doors { grid-template-columns: minmax(0, 1fr) }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .stats > div:nth-child(2) { border-right: 0 }
+  .mixups ul { grid-template-columns: minmax(0, 1fr) }
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px }
   .masthead { padding-bottom: 14px; margin-bottom: 18px }
   .wordmark { font-size: 1.6rem }
   .brief { flex-wrap: wrap }
@@ -219,4 +293,6 @@ label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spa
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important }
+  .demo-sheet path, .note { animation: none !important; stroke-dashoffset: 0; opacity: 1 }
+  .n1, .n2 { opacity: 0.45 !important; text-decoration: line-through }
 }

@@ -200,6 +200,18 @@ defmodule SquiggleWeb.RoomLive do
                 <p :if={@drawer?} class="hand">
                   Draw <span class="secret">{article(@room.word)} {@room.word}</span>
                 </p>
+                <span
+                  :if={@drawer?}
+                  class="ghost-hint"
+                  title={"The average of 5,000 people's #{@room.word}"}
+                >
+                  <span
+                    class="avg"
+                    style={"--img: url(/images/average/#{@room.word}.png)"}
+                    aria-hidden="true"
+                  ></span>
+                  <small>the average {@room.word}</small>
+                </span>
                 <p :if={!@drawer? and @solved?} class="hand">
                   You got it: <span class="secret">{@room.word}</span>
                 </p>
@@ -239,7 +251,7 @@ defmodule SquiggleWeb.RoomLive do
             <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
           </div>
 
-          <div class="tools">
+          <div :if={@room.phase == :lobby or (@drawer? and @room.phase == :drawing)} class="tools">
             <%= if @room.phase == :lobby do %>
               <button id="start" class="ink-btn" phx-click="start">Start the game</button>
             <% end %>
